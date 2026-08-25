@@ -1,38 +1,18 @@
 package RSA.SeleniumFrameworkDesign;
-
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import RSA.BaseComponent.BaseTest;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import rsa.pagefactory.LoginPage;
 import rsa.pagefactory.MyCartPage;
 import rsa.pagefactory.OrderHistoryPage;
 import rsa.pagefactory.PaymentPage;
 import rsa.pagefactory.ProductCatalogPage;
 
 public class EcommerceTest extends BaseTest  {
-
 	//String productName="IPHONE 13 PRO";
 
 	@Test(dataProvider = "getData")

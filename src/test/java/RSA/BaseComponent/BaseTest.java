@@ -3,7 +3,6 @@ package RSA.BaseComponent;
 import org.testng.annotations.AfterMethod;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -18,15 +17,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariOptions;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import rsa.pagefactory.LoginPage;
 
 public class BaseTest {
@@ -44,20 +37,16 @@ public class BaseTest {
 		String browserName=System.getProperty("browser")!=null ? System.getProperty("browser"):prop.getProperty("browser");
 
 		//String browserName=prop.getProperty("browser");
-		
 		if (browserName.contains("chrome")) {
 			ChromeOptions option = new ChromeOptions();
 //			option.addArguments("--remote-allow-origins=*");
 			if(browserName.contains("headless")) {
-			option.addArguments("chromeheadless");
+			option.addArguments("--headless=new");
 			}
-			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(option);
 		} 
 		else if (browserName.equals("safari")) {
-
 			driver = new SafariDriver();
-
 		}
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
@@ -74,7 +63,6 @@ public class BaseTest {
 		ObjectMapper mapper=new ObjectMapper();
 		List<HashMap<String, String>> data=mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
 		});
-
 		return data;	
 	}
 
@@ -96,8 +84,8 @@ public class BaseTest {
 		return loginpage;
 	}
 
-	/*@AfterMethod
+	@AfterMethod
 	public void tearDown() {
 		driver.quit();
-	}*/
+	}
 }
