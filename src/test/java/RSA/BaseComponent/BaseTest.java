@@ -42,14 +42,21 @@ public class BaseTest {
 //			option.addArguments("--remote-allow-origins=*");
 			if(browserName.contains("headless")) {
 			option.addArguments("--headless=new");
+			option.addArguments("--no-sandbox");
+			option.addArguments("--disable-dev-shm-usage");
+			option.addArguments("--window-size=1920,1080");
+			option.addArguments("--disable-gpu");
+
 			}
 			driver = new ChromeDriver(option);
 		} 
 		else if (browserName.equals("safari")) {
 			driver = new SafariDriver();
 		}
-		driver.manage().window().maximize();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+		if (!browserName.contains("headless")) {
+			driver.manage().window().maximize();
+		}
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 		return driver;
 	}
 
