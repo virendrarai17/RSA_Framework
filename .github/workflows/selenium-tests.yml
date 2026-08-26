@@ -24,4 +24,4 @@ jobs:
           cache: maven
 
       - name: Run Selenium Tests
-        run: mvn clean test
+        run: mvn clean test -Dbrowser=chromeheadless
